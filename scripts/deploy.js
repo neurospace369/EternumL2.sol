@@ -1,18 +1,16 @@
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 
 async function main() {
-  const EternumL2 = await ethers.getContractFactory("EternumL2");
-  console.log("Deploying EternumL2...");
-  
-  const contract = await EternumL2.deploy();
-  await contract.deployed();
+    const EternumIDO = await hre.ethers.getContractFactory("EternumIDO");
+    const ido = await EternumIDO.deploy("0xYourTokenAddressHere", 1000); // Replace with actual token address
 
-  console.log(`EternumL2 deployed to: ${contract.address}`);
+    await ido.deployed();
+    console.log(`EternumIDO deployed at: ${ido.address}`);
 }
 
 main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });
